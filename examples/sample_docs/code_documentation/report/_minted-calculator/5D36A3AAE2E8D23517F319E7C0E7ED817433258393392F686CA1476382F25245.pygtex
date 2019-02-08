@@ -1,0 +1,47 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{c}{\PYGZsh{} @file setup\PYGZus{}uart.s                                \PYGZsh{}}
+\PYG{c}{\PYGZsh{} @author John McAvoy                               \PYGZsh{}}
+\PYG{c}{\PYGZsh{} @desc exports \PYGZdq{}setup\PYGZus{}uart\PYGZdq{} assembly function      \PYGZsh{}}
+\PYG{c}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+
+
+\PYG{n+na}{.equ} \PYG{n+no}{eUSCI\PYGZus{}A0}\PYG{p}{,}  \PYG{l+m+mi}{0x40001000}  \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{base} \PYG{n+no}{address}
+
+\PYG{c}{\PYGZsh{} eUSCI\PYGZus{}A0 Offsets}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0CTLW0}\PYG{p}{,} \PYG{l+m+mi}{0x00}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Control} \PYG{n+no}{Word} \PYG{l+m+mi}{0}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0CTLW1}\PYG{p}{,} \PYG{l+m+mi}{0x02}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Control} \PYG{n+no}{Word} \PYG{l+m+mi}{1}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0BRW}  \PYG{p}{,} \PYG{l+m+mi}{0x06}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Baud} \PYG{n+no}{Rate} \PYG{n+no}{Control}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0MCTLW}\PYG{p}{,} \PYG{l+m+mi}{0x08}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Modulation} \PYG{n+no}{Control}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0STATW}\PYG{p}{,} \PYG{l+m+mi}{0x0A}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Status}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0RXBUF}\PYG{p}{,} \PYG{l+m+mi}{0x0C}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Receive} \PYG{n+no}{Buffer}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0TXBUF}\PYG{p}{,} \PYG{l+m+mi}{0x0E}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Transmit} \PYG{n+no}{Buffer}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0ABCTL}\PYG{p}{,} \PYG{l+m+mi}{0x10}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Auto} \PYG{n+no}{Baud} \PYG{n+no}{Rate} \PYG{n+no}{Control}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0IRCTL}\PYG{p}{,} \PYG{l+m+mi}{0x12}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{IrDA} \PYG{n+no}{Control}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0IE}   \PYG{p}{,} \PYG{l+m+mi}{0x1A}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Interrupt} \PYG{n+no}{Enable}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0IFG}  \PYG{p}{,} \PYG{l+m+mi}{0x1C}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Interrupt} \PYG{n+no}{Flag}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0IV}   \PYG{p}{,} \PYG{l+m+mi}{0x1E}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Interrupt} \PYG{n+no}{Vector}
+
+\PYG{n+na}{.global} \PYG{n+no}{setup\PYGZus{}uart} \PYG{err}{@} \PYG{n+no}{exports} \PYG{n+no}{setup\PYGZus{}uart} \PYG{n+no}{asm} \PYG{n+no}{function} \PYG{n+no}{to} \PYG{n+no}{be} \PYG{n+no}{linked} \PYG{n+no}{to} \PYG{n+no}{C} \PYG{n+no}{code}
+
+\PYG{n+na}{.text}
+\PYG{n+nl}{setup\PYGZus{}uart:}
+
+    \PYG{n+nf}{ldr}     \PYG{n+nv}{\PYGZpc{}r1}\PYG{p}{,} \PYG{err}{=}\PYG{n+no}{eUSCI\PYGZus{}A0}   \PYG{err}{@} \PYG{n+no}{load} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{base} \PYG{n+no}{address} \PYG{n+no}{to} \PYG{n+no}{R1}
+
+    \PYG{c}{\PYGZsh{} enabled, smclK, async, UART auto baud rate mode, one\PYGZhy{}stop bit, 8\PYGZhy{}bit char, MSB first, no parity}
+    \PYG{n+nf}{mov}     \PYG{n+nv}{\PYGZpc{}r3}\PYG{p}{,} \PYG{c}{\PYGZsh{}0x26c1            @ table 24\PYGZhy{}8 of user guide}
+    \PYG{n+no}{strh}    \PYG{n+nv}{\PYGZpc{}r3}\PYG{p}{,} \PYG{p}{[}\PYG{n+nv}{\PYGZpc{}r1}\PYG{p}{,} \PYG{c}{\PYGZsh{}UCA0CTLW0]  @ configure UCA0CTLW0}
+
+    \PYG{c}{\PYGZsh{} deglitch t0x26c1ime \PYGZti{}5ns}
+    \PYG{n+nf}{mov}     \PYG{n+nv}{\PYGZpc{}r3}\PYG{p}{,} \PYG{c}{\PYGZsh{}0x00              @ table 24\PYGZhy{}13 of user guide}
+    \PYG{n+no}{strh}    \PYG{n+nv}{\PYGZpc{}r3}\PYG{p}{,} \PYG{p}{[}\PYG{n+nv}{\PYGZpc{}r1}\PYG{p}{,} \PYG{c}{\PYGZsh{}UCA0CTLW1]  @ configure UCA0CTLW1}
+
+    \PYG{c}{\PYGZsh{} alternating second stage modulation, 4\PYGZhy{}th bit irst stage modulation, oversampling}
+    \PYG{n+nf}{mov}     \PYG{n+nv}{\PYGZpc{}r3}\PYG{p}{,} \PYG{c}{\PYGZsh{}0xAA81            @ table 24\PYGZhy{}11 of user guide}
+    \PYG{n+no}{strh}    \PYG{n+nv}{\PYGZpc{}r3}\PYG{p}{,} \PYG{p}{[}\PYG{n+nv}{\PYGZpc{}r1}\PYG{p}{,} \PYG{c}{\PYGZsh{}UCA0MCTLW]  @ configure UCA0MCTLW}
+
+    \PYG{c}{\PYGZsh{} enable rx interrupt}
+    \PYG{n+nf}{mov}     \PYG{n+nv}{\PYGZpc{}r3}\PYG{p}{,} \PYG{c}{\PYGZsh{}0x01              @ table 24\PYGZhy{}17 of user guide}
+    \PYG{n+no}{strh}    \PYG{n+nv}{\PYGZpc{}r3}\PYG{p}{,} \PYG{p}{[}\PYG{n+nv}{\PYGZpc{}r1}\PYG{p}{,} \PYG{c}{\PYGZsh{}UCA0IE]     @ configure UCA0IE}
+\end{Verbatim}

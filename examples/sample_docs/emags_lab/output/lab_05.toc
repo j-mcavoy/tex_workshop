@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {I}Introduction and Objectives}{1}
+\contentsline {section}{\numberline {II}Background and Relevant Theory}{1}
+\contentsline {section}{\numberline {III}Results and Discussion}{2}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Observing Wave Reflection}{2}
+\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-A}1}47$\Omega $ Resistor}{2}
+\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-A}2}50$\Omega $ Resistor}{2}
+\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-A}3}100$\Omega $ Resistor}{2}
+\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-A}4}2.2nF Capacitor}{2}
+\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-A}5}Short Circuit}{2}
+\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-A}6}Open Circuit}{2}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Measuring the Input Impedance}{3}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Deriving Experimental ZL Values}{3}
+\contentsline {section}{\numberline {IV}Conclusion}{3}
+\contentsline {section}{References}{3}
+\contentsline {section}{Appendix\nobreakspace A: Smith Charts}{3}
+\contentsline {section}{Appendix\nobreakspace B: $Z_L$ Calculations}{3}

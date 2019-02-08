@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{mcode}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{xfrac}
+\usepackage{flushend}
+\usepackage{wrapfig}
+\usepackage{minted}
+\usepackage{etoolbox,xpatch}
+
+
+\setminted{fontsize=\small,baselinestretch=1}
+
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\xpatchcmd{\inputminted}{\minted@fvset}{\minted@fvset\dontdofcolorbox}{}{}
+\makeatother
+
+\begin{document}
+
+\title{Assembly Calculator}
+\author{John McAvoy}
+\date{10 December 2018}
+\maketitle
+
+\section{Assembly Functions}
+
+\begin{listing}[H]
+  \caption{setup\_uart.s}
+  \inputminted{gas}{../msp432401/src/setup_uart.s}
+\end{listing}
+
+\begin{listing}[H]
+  \caption{read\_rx\_buffer.s}
+  \inputminted{gas}{../msp432401/src/read_rx_buffer.s}
+\end{listing}
+
+\begin{listing}[H]
+  \caption{write\_tx\_buffer.s}
+  \inputminted{gas}{../msp432401/src/write_tx_buffer.s}
+\end{listing}
+
+\section{C Functions}
+\section{Headers}
+\begin{listing}[H]
+  \caption{Equation.h}
+  \inputminted{C}{../msp432401/src/Equation.h}
+\end{listing}
+
+\begin{listing}[H]
+  \caption{calculator.h}
+  \inputminted{C}{../msp432401/src/calculator.h}
+\end{listing}
+
+\begin{listing}[H]
+  \caption{uart.h}
+  \inputminted{C}{../msp432401/src/uart.h}
+\end{listing}
+
+\section{Implementations}
+
+\begin{listing}[H]
+  \caption{calculator.c}
+  \inputminted{C}{../msp432401/src/calculator.c}
+\end{listing}
+
+\begin{listing}[H]
+  \caption{uart.c}
+  \inputminted{C}{../msp432401/src/uart.c}
+\end{listing}
+
+\begin{listing}[H]
+  \caption{main.c}
+  \inputminted{C}{../msp432401/src/main.c}
+\end{listing}
+
+\section{Build Files}
+\begin{listing}[H]
+  \caption{Makefile}
+  \inputminted{Makefile}{../msp432401/Makefile}
+\end{listing}
+
+\end{document}

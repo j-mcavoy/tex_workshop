@@ -1,0 +1,34 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * @file uart.h}
+\PYG{c+cm}{ * @author John McAvoy}
+\PYG{c+cm}{ */}
+
+\PYG{c+cp}{\PYGZsh{}ifndef UART\PYGZus{}H}
+\PYG{c+cp}{\PYGZsh{}define UART\PYGZus{}H}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stdint.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}Equation.h\PYGZdq{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{setup\PYGZus{}uart}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{);}           \PYG{c+c1}{// see: setup\PYGZus{}uart.s}
+\PYG{k+kt}{char} \PYG{n+nf}{read\PYGZus{}rx\PYGZus{}buffer}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{);}       \PYG{c+c1}{// see: read\PYGZus{}rx\PYGZus{}buffer.s}
+\PYG{k+kt}{void} \PYG{n+nf}{write\PYGZus{}tx\PYGZus{}buffer}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{);}    \PYG{c+c1}{// see: write\PYGZus{}tx\PYGZus{}buffer.s}
+
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * @func parseInput}
+\PYG{c+cm}{ * @param buffer        a char array of an equation}
+\PYG{c+cm}{ * @param length        length of buffer}
+\PYG{c+cm}{ * @returns a parsed Equation struct}
+\PYG{c+cm}{ */}
+\PYG{n}{Equation} \PYG{n+nf}{parseInput}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{buffer}\PYG{p}{[],} \PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{length}\PYG{p}{);}
+
+
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * @func send\PYGZus{}bytes}
+\PYG{c+cm}{ * @param buffer        a char array of message to be sent via UART}
+\PYG{c+cm}{ * @param length        length of buffer}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{void} \PYG{n+nf}{send\PYGZus{}bytes}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{buffer}\PYG{p}{[],} \PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{length}\PYG{p}{);}
+
+\PYG{c+cp}{\PYGZsh{}endif }\PYG{c+c1}{// UART\PYGZus{}H}
+\end{Verbatim}

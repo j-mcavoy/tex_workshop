@@ -1,0 +1,157 @@
+\documentclass{resume} % Use the custom resume.cls style
+\usepackage[left=0.4 in,top=0.4in,right=0.4 in,bottom=0.4in]{geometry} % Document margins
+
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
+
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+
+
+\name{Jonathan E. McAvoy}
+
+\address{208 Abbey Lane, Logan Township, NJ 08085}
+
+\address{(856) 357-2550 \\ mcavoyj5@students.rowan.edu}
+
+\begin{document}
+
+    \begin{rSection}{Education}
+
+        {\bf Bachelor of Science, Electrical and Computer Engineering} \hfill {anticipated May 2020}
+        \\
+        Rowan University  GPA:  3.751 / 4.000, Dean's List
+
+        \end{rSection}
+
+%----------------------------------------------------------------------------------------
+%   TECHNICAL STRENGTHS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{TECHNICAL SKILLS}
+
+        \begin{tabular}{ @{} >{\bfseries}l @{\hspace{0ex}} l }
+                &
+                %Apache $\vert$
+                Bash $\vert$
+                C $\vert$
+                C++ $\vert$
+                C\# $\vert$
+                HTML $\vert$
+                Java $\vert$
+                JavaScript $\vert$
+                MATLAB $\vert$
+                %Nodejs $\vert$
+                PHP $\vert$
+                Python $\vert$
+                %Reactjs $\vert$
+                Rust $\vert$
+                SQL $\vert$
+                Swift $\vert$
+                Verilog
+                \\
+
+%           Interests&
+            &
+            Software Engineering, Linux Development, and Embedded Systems
+
+               \\
+
+        \end{tabular}
+
+    \end{rSection}
+
+%----------------------------------------------------------------------------------------
+%   WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{TECHNICAL PROJECTS}
+
+%------------------------------------------------
+
+\begin{rSubsection}{Autonomous Quadcopter}{September 2017 - Present}{Rowan RAS}{}
+\item Fully autonomous drone capable of navigating to waypoints, dropping a
+  payload, and detecting targets using image recognition.
+\item Integrates a fight controller, SOC image processing, navigation sensors
+  and a custom power regulation circuit, on a custom designed aluminum frame.
+\end{rSubsection}
+
+%------------------------------------------------
+
+\begin{rSubsection}{Lab Log Tool}{May 2018 - September 2018}{Harris Cooperation, Project Lead}{}
+\item Web application used by FAA employees to record lab logs, schedule lab times, and generate metrics.
+\item Back-end: Linux server running a Nodejs web server, a Postfix mail server, and MySQL database.
+\end{rSubsection}
+
+%------------------------------------------------
+
+\begin{rSubsection}{Augmented Reality Using Structured Light (ARSL)}{September 2018 - Present}{Junior Clinic}{}
+\item A novel image processing method for creating an AR environment using
+  projected light and a camera.
+\item Developed MATLAB, C++, and Android proof of concept applications using the
+  ARSL method.
+\end{rSubsection}
+
+%------------------------------------------------
+
+\begin{rSubsection}{Rowan Resource Center Server}{September 2017 - Present}{A-Team, Project Lead}{}
+\item Linux server running multiple virtual machines, a web server written in Rust, and MySQL database.
+\item Hosts web applications for tracking employee hours, equipment loans, 3D printer queue, and chemical inventories.
+\end{rSubsection}
+
+%------------------------------------------------
+
+\begin{rSubsection}{Profhacks Website}{September 2017 - Present}{Rowan IEEE, Project Lead}{}
+\item Nodejs-based website for Rowan IEEE's annual Hackathon.
+\end{rSubsection}
+
+%------------------------------------------------
+
+%\begin{rSubsection}{Rowan IEEE Website}{September 2017 - Present}{Rowan IEEE}{}
+%\item Apache-based website for Rowan IEEE.
+%\end{rSubsection}
+%
+%------------------------------------------------
+
+%\begin{rSubsection}{8-bit Discrete Processor}{June 2017 - Present}{Rowan RAS, Project Lead}{}
+%\item An 8-bit processor constructed using only discrete IC logic gates.
+%\end{rSubsection}
+
+%------------------------------------------------
+
+%\begin{rSubsection}{Android Things Facial Recognition}{November 2017 - December 2017}{Google Hackathon}{}
+%\item Android IOT device that uses Google tensor flow to perform facial recognition to differentiate between users.
+%\end{rSubsection}
+
+%------------------------------------------------
+
+%\begin{rSubsection}{Smart Mirror}{December 2016 - February 2017}{Sophomore Clinic Project}{}
+%\item Raspberry Pi IOT mirror with facial recognition that displays time, weather, and news through a two-way mirror.
+%\end{rSubsection}
+
+
+%------------------------------------------------
+
+%\begin{rSubsection}{EEG Controller}{February 2017 - May 2017}{Sophomore Clinic Project}{}
+%\item Smart phone app that reads brain wave data from a custom wearable EGG.
+%\end{rSubsection}
+
+\end{rSection}
+
+
+%   EXAMPLE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{WORK EXPERIENCE / INTERNSHIPS} \itemsep -3pt
+{ECE Resource Center Technologist, Rowan Apprentice Engineering Team (A-Team)} \hfill January 2018 - Present\\
+{Datacom Intern, Harris Cooperation} \hfill May 2018 - September 2018\\
+{Chemical Engineering Lab Assistant, Rowan University} \hfill February 2017 - September 2017\\
+{Data Entry and QA Intern, Siegfried USA, LLC} \hfill June 2016 - September 2016\\
+{VR Intern, Virtual Reality Center, Rowan University} \hfill May 2016 - August 2016
+\end{rSection}
+
+\begin{rSection}{Professional Societies/Awards} \itemsep -3pt
+{\textbf{Rowan University IEEE Student Branch (Rowan IEEE)}, Service Chair, Student Member of the Month}\\
+{\textbf{Robotics and Automation Society Student Branch (Rowan RAS)}, Project Coordinator Chair}\\
+{\textbf{Engineers Without Borders Student Branch}, Web Master}\\
+\end{rSection}
+
+\end{document}

@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * @file uart.c}
+\PYG{c+cm}{ * @author John McAvoy}
+\PYG{c+cm}{ */}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}msp432p401r.h\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}uart.h\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}Equation.h\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}calculator.h\PYGZdq{}}
+
+\PYG{k}{extern} \PYG{k+kt}{void} \PYG{n+nf}{setup\PYGZus{}uart}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{);}           \PYG{c+c1}{// see: setup\PYGZus{}uart.s}
+\PYG{k}{extern} \PYG{k+kt}{char} \PYG{n+nf}{read\PYGZus{}rx\PYGZus{}buffer}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{);}       \PYG{c+c1}{// see: read\PYGZus{}rx\PYGZus{}buffer.s}
+\PYG{k}{extern} \PYG{k+kt}{void} \PYG{n+nf}{write\PYGZus{}tx\PYGZus{}buffer}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{);}    \PYG{c+c1}{// see: write\PYGZus{}tx\PYGZus{}buffer.s}
+
+\PYG{n}{Equation} \PYG{n+nf}{parseInput}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{buffer}\PYG{p}{[],} \PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{length}\PYG{p}{)\PYGZob{}}
+    \PYG{n}{Equation} \PYG{n}{eq}\PYG{p}{;}
+    \PYG{n}{eq}\PYG{p}{.}\PYG{n}{a} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{n}{eq}\PYG{p}{.}\PYG{n}{b} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+
+    \PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{op\PYGZus{}i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{// operator index}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{length}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{buffer}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{} \PYGZsq{}} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{op\PYGZus{}i} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+            \PYG{c+c1}{// operator index found}
+            \PYG{n}{op\PYGZus{}i} \PYG{o}{=} \PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{n}{eq}\PYG{p}{.}\PYG{n}{op} \PYG{o}{=} \PYG{n}{buffer}\PYG{p}{[}\PYG{n}{op\PYGZus{}i}\PYG{p}{];}
+    \PYG{n}{eq}\PYG{p}{.}\PYG{n}{a} \PYG{o}{=} \PYG{n}{charBuffer2Int}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{buffer}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{op\PYGZus{}i} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2}\PYG{p}{);}
+    \PYG{n}{eq}\PYG{p}{.}\PYG{n}{b} \PYG{o}{=} \PYG{n}{charBuffer2Int}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{buffer}\PYG{p}{[}\PYG{n}{op\PYGZus{}i}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{],} \PYG{n}{length} \PYG{o}{\PYGZhy{}} \PYG{n}{op\PYGZus{}i} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+
+    \PYG{k}{return} \PYG{n}{eq}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{send\PYGZus{}bytes}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{buffer}\PYG{p}{[],} \PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{length}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{i} \PYG{o}{=} \PYG{n}{length} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+        \PYG{k}{while}\PYG{p}{(}\PYG{o}{!}\PYG{p}{(}\PYG{n}{EUSCI\PYGZus{}A0}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{IFG} \PYG{o}{\PYGZam{}} \PYG{n}{EUSCI\PYGZus{}A\PYGZus{}IFG\PYGZus{}TXIFG}\PYG{p}{));} \PYG{c+c1}{// wait for TX to send}
+        \PYG{n}{write\PYGZus{}tx\PYGZus{}buffer}\PYG{p}{(}\PYG{n}{buffer}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);} \PYG{c+c1}{// send char}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

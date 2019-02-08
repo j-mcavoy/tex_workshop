@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * @file calculator.h}
+\PYG{c+cm}{ * @author John McAvoy}
+\PYG{c+cm}{ */}
+
+\PYG{c+cp}{\PYGZsh{}ifndef CALCULATOR\PYGZus{}H}
+\PYG{c+cp}{\PYGZsh{}define CALCULATOR\PYGZus{}H}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stdint.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}Equation.h\PYGZdq{}}
+
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * @func calculate}
+\PYG{c+cm}{ * @param equation\PYGZus{}str  a pointer to a char array of an equation chars}
+\PYG{c+cm}{ * @param length        length of equation\PYGZus{}str}
+\PYG{c+cm}{ * @returns the solution to the equation}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int32\PYGZus{}t} \PYG{n+nf}{calculate}\PYG{p}{(}\PYG{n}{Equation} \PYG{n}{eq}\PYG{p}{);}
+
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * @func calculate}
+\PYG{c+cm}{ * @param buffer        a pointer to a char array of an integer}
+\PYG{c+cm}{ * @param length        length of buffer}
+\PYG{c+cm}{ * @returns the character representation of the integer}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int32\PYGZus{}t} \PYG{n+nf}{charBuffer2Int}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{buffer}\PYG{p}{,} \PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{length}\PYG{p}{);}
+
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * @func calculates power of number}
+\PYG{c+cm}{ * @param a             uint8\PYGZus{}t}
+\PYG{c+cm}{ * @param pow           uint8\PYGZus{}t a raised to power}
+\PYG{c+cm}{ * @returns a to the p power}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int32\PYGZus{}t} \PYG{n+nf}{power}\PYG{p}{(}\PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{a}\PYG{p}{,} \PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{p}\PYG{p}{);}
+
+\PYG{c+cp}{\PYGZsh{}endif }\PYG{c+c1}{// CALCULATOR\PYGZus{}H}
+\end{Verbatim}

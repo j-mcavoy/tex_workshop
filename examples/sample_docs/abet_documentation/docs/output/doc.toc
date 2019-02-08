@@ -1,0 +1,11 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Setting Up Internal Network}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Rowan\_IoT WiFi Station}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}WiFi Station to AP Bridge}{6}{subsection.1.2}
+\contentsline {section}{\numberline {2}Setting Up the Printers}{8}{section.2}
+\contentsline {section}{\numberline {3}Setting Up the Desktops}{8}{section.3}
+\contentsline {subsection}{\numberline {3.1}Convert a \csqQQ {34}Rowan Desktop\csqQQ {34} to an \csqQQ {34}ABET Desktop\csqQQ {34}}{8}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Add a New Internal Drive}{8}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Fresh Install Windows}{9}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Setting Up File Sync}{10}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Setting Up Fileshare Server}{10}{subsection.3.3}

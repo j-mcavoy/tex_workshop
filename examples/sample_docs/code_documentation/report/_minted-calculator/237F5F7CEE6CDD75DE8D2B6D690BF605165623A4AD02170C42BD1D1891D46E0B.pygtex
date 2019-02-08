@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+\PYG{c}{\PYGZsh{} @file read\PYGZus{}rx\PYGZus{}buffer                              \PYGZsh{}}
+\PYG{c}{\PYGZsh{} @author John McAvoy                               \PYGZsh{}}
+\PYG{c}{\PYGZsh{} @desc exports \PYGZdq{}read\PYGZus{}rx\PYGZus{}buffer\PYGZdq{} assembly function  \PYGZsh{}}
+\PYG{c}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{}}
+
+\PYG{n+na}{.equ} \PYG{n+no}{eUSCI\PYGZus{}A0}\PYG{p}{,}  \PYG{l+m+mi}{0x40001000}  \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{base} \PYG{n+no}{address}
+
+\PYG{c}{\PYGZsh{} eUSCI\PYGZus{}A0 Offsets}
+\PYG{n+na}{.equ} \PYG{n+no}{UCA0RXBUF}\PYG{p}{,} \PYG{l+m+mi}{0x0C}        \PYG{err}{@} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{Receive} \PYG{n+no}{Buffer}
+
+\PYG{n+na}{.global} \PYG{n+no}{read\PYGZus{}rx\PYGZus{}buffer}      \PYG{err}{@} \PYG{n+no}{exports} \PYG{n+no}{read\PYGZus{}rx\PYGZus{}buffer} \PYG{n+no}{asm} \PYG{n+no}{function} \PYG{n+no}{to} \PYG{n+no}{be} \PYG{n+no}{linked} \PYG{n+no}{to} \PYG{n+no}{C} \PYG{n+no}{code}
+
+\PYG{n+na}{.text}
+\PYG{n+nl}{read\PYGZus{}rx\PYGZus{}buffer:}
+
+    \PYG{n+nf}{ldr}     \PYG{n+nv}{\PYGZpc{}r1}\PYG{p}{,} \PYG{err}{=}\PYG{n+no}{eUSCI\PYGZus{}A0}          \PYG{err}{@} \PYG{n+no}{load} \PYG{n+no}{eUSCI\PYGZus{}A0} \PYG{n+no}{base} \PYG{n+no}{address} \PYG{n+no}{to} \PYG{n+no}{R1}
+    \PYG{n+nf}{ldrb}    \PYG{n+nv}{\PYGZpc{}r0}\PYG{p}{,} \PYG{p}{[}\PYG{n+nv}{\PYGZpc{}r1}\PYG{p}{,} \PYG{c}{\PYGZsh{}UCA0RXBUF]  @ load UCA0RXBUF byte to R0, which is returned}
+\end{Verbatim}

@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * @file main.c}
+\PYG{c+cm}{ * @author John McAvoy}
+\PYG{c+cm}{ */}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stdint.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stdio.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}msp432p401r.h\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}calculator.h\PYGZdq{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}uart.h\PYGZdq{}}
+
+\PYG{k}{const} \PYG{k+kt}{char} \PYG{n}{CALCULATION\PYGZus{}DELIMINATOR} \PYG{o}{=} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{;} \PYG{c+c1}{// sets character code for end of calculation string}
+\PYG{k+kt}{char} \PYG{n}{input\PYGZus{}buffer}\PYG{p}{[}\PYG{l+m+mi}{256}\PYG{p}{];} \PYG{c+c1}{// sets char buffer for input from UART}
+\PYG{k+kt}{uint8\PYGZus{}t} \PYG{n}{input\PYGZus{}counter} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{// counts chars added to input buffer}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+
+    \PYG{n}{setup\PYGZus{}uart}\PYG{p}{();}
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// USCIA0\PYGZus{}RX Interrupt Handler}
+\PYG{k+kt}{void} \PYG{n+nf}{EUSCIA0\PYGZus{}IRQHandler}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{EUSCI\PYGZus{}A0}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{IFG} \PYG{o}{\PYGZam{}} \PYG{n}{EUSCI\PYGZus{}A\PYGZus{}IFG\PYGZus{}RXIFG}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{c+c1}{// if UA0RX flag set}
+
+        \PYG{k+kt}{char} \PYG{n}{rx\PYGZus{}in} \PYG{o}{=} \PYG{n}{read\PYGZus{}rx\PYGZus{}buffer}\PYG{p}{();} \PYG{c+c1}{// read byte}
+
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{rx\PYGZus{}in} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{)\PYGZob{}}
+            \PYG{c+c1}{// end of equation}
+            \PYG{n}{input\PYGZus{}counter} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+            \PYG{n}{Equation} \PYG{n}{eq} \PYG{o}{=} \PYG{n}{parseInput}\PYG{p}{(}\PYG{n}{input\PYGZus{}buffer}\PYG{p}{,} \PYG{n}{input\PYGZus{}counter}\PYG{p}{);}
+
+            \PYG{k+kt}{char} \PYG{n}{out\PYGZus{}buffer}\PYG{p}{[}\PYG{l+m+mi}{32}\PYG{p}{];}
+            \PYG{n}{sprintf}\PYG{p}{(}\PYG{n}{out\PYGZus{}buffer}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{calculate}\PYG{p}{(}\PYG{n}{eq}\PYG{p}{));}
+            \PYG{n}{send\PYGZus{}bytes}\PYG{p}{(}\PYG{n}{out\PYGZus{}buffer}\PYG{p}{,} \PYG{l+m+mi}{32}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{else}
+            \PYG{n}{input\PYGZus{}buffer}\PYG{p}{[}\PYG{n}{input\PYGZus{}counter}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{rx\PYGZus{}in}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

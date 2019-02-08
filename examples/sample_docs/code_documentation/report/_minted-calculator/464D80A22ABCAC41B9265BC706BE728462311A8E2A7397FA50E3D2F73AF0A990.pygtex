@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{=}assembly\PYGZus{}calculator
+\PYG{n+nv}{BOARD}\PYG{o}{=}msp432401R
+
+\PYG{n+nv}{SRC\PYGZus{}DIR} \PYG{o}{?=} src
+\PYG{n+nv}{OBJ\PYGZus{}DIR} \PYG{o}{?=} obj
+\PYG{n+nv}{BIN\PYGZus{}DIR} \PYG{o}{?=} bin
+
+\PYG{n+nv}{CC}\PYG{o}{=}arm\PYGZhy{}none\PYGZhy{}eabi\PYGZhy{}gcc
+\PYG{n+nv}{CFLAGS} \PYG{o}{?=} \PYGZhy{}Ilib/TI/Include \PYGZhy{}Ilib/CMSIS/Include \PYGZhy{}\PYGZhy{}specs\PYG{o}{=}nosys.specs
+\PYG{n+nv}{AS}\PYG{o}{=}arm\PYGZhy{}none\PYGZhy{}eabi\PYGZhy{}as
+
+\PYG{n+nv}{TARGET}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}BIN\PYGZus{}DIR\PYG{k}{)}/\PYG{k}{\PYGZdl{}(}BOARD\PYG{k}{)}\PYGZus{}\PYG{k}{\PYGZdl{}(}PROJECT\PYGZus{}NAME\PYG{k}{)}.elf
+
+\PYG{n+nv}{SRCS} \PYG{o}{:=} \PYG{k}{\PYGZdl{}(}shell find \PYG{k}{\PYGZdl{}(}SRC\PYGZus{}DIR\PYG{k}{)} \PYGZhy{}name *.c \PYGZhy{}or \PYGZhy{}name *.s\PYG{k}{)}
+
+\PYG{n+nf}{\PYGZdl{}(TARGET)}\PYG{o}{:} \PYG{k}{\PYGZdl{}(}\PYG{n+nv}{OBJS}\PYG{k}{)}
+	\PYG{k}{\PYGZdl{}(}CC\PYG{k}{)} \PYG{k}{\PYGZdl{}(}CFLAGS\PYG{k}{)} \PYG{k}{\PYGZdl{}(}LDFLAGS\PYG{k}{)} \PYG{k}{\PYGZdl{}(}SRCS\PYG{k}{)} \PYGZhy{}o \PYG{n+nv}{\PYGZdl{}@}
+
+\PYG{n+nf}{\PYGZdl{}(OBJ\PYGZus{}DIR)/\PYGZpc{}.o}\PYG{o}{:} \PYG{k}{\PYGZdl{}(}\PYG{n+nv}{SRCS}\PYG{k}{)}
+	\PYG{k}{\PYGZdl{}(}CC\PYG{k}{)} \PYG{k}{\PYGZdl{}(}CFLAGS\PYG{k}{)} \PYG{k}{\PYGZdl{}(}LDFLAGS\PYG{k}{)} \PYG{k}{\PYGZdl{}(}SRCS\PYG{k}{)} \PYGZhy{}o \PYG{n+nv}{\PYGZdl{}@}
+
+\PYG{n+nf}{.PHONY}\PYG{o}{:} \PYG{n}{clean}
+\PYG{n+nf}{clean}\PYG{o}{:}
+	@rm \PYGZhy{}rf bin/* src/*.o
+
+\PYG{n+nf}{run}\PYG{o}{:}
+	@echo \PYG{l+s+s2}{\PYGZdq{}mspdebug tilib \PYGZdq{}}prog \PYG{k}{\PYGZdl{}(}BINDIR\PYG{k}{)}/\PYG{k}{\PYGZdl{}(}TARGET\PYG{k}{)}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}
+	@mspdebug tilib \PYG{l+s+s2}{\PYGZdq{}prog }\PYG{k}{\PYGZdl{}(}BINDIR\PYG{k}{)}\PYG{l+s+s2}{/}\PYG{k}{\PYGZdl{}(}TARGET\PYG{k}{)}\PYG{l+s+s2}{\PYGZdq{}}
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {I}Introduction}{1}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-A}}Objectives}{1}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-B}}Background and Relevant Theory}{1}
+\contentsline {section}{\numberline {II}Protocol, Results and Discussion}{1}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Part 1: Two dimensional (2-D) DCT and inverse 2-D DCT}{1}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Part 2: Feature Extraction}{2}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}Part 3: Training the Face Identification System}{4}
+\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-D}}Part 4: Performance Evaluation of the Face Identification System}{4}
+\contentsline {section}{\numberline {III}Summary and Conclusions}{4}
+\contentsline {section}{References}{4}
+\contentsline {section}{Appendix}{5}
