@@ -1,0 +1,119 @@
+% this is a comment in TeX, comments are messages used to clarify code and
+% comments are ignored by the compiler
+
+% the document class is the type of document that you are creating different
+% document classes have different ways to handle titles, paragraphs, etc. to see
+% all the different types of document classes, go to
+% https://ctan.org/topic/class
+\documentclass{refman}
+
+% there are TONS of packages for LaTeX that you can install and then implement
+% in your own TeX files by using the usepackage tag
+% the graphicx package allows us to include graphics into our document using the
+% includegrahics function
+\usepackage{graphicx}
+
+% these lines set the title and author information for this document
+% special characters have a specific name in LaTeX and you specify them by using
+% the backslash. The \LaTeX symbol is actually a special character that prints
+% out the LaTeX logo in that fancy font
+\title{Hello {\LaTeX}}
+\author{John McAvoy}
+
+% in TeX, tags that can be specified on one line look like the title and author
+% tags, start with a backslash and then the tag name: e.g. \tag
+
+% tags that span multiple lines and have other things nested inside them follow
+% a \begin{tag} ... \end{tag} format such as the document tag below
+\begin{document}
+
+% this is the simple command that will generate the title and author for you
+\maketitle
+% LaTeX will also generate table of contents based on your section titles
+\tableofcontents
+
+% printing text is a simple as typing it out
+Hello World!\\
+
+% to specify new lines use two backslashes
+\textit{Hello there! I am an italic font}\\
+\textbf{I am a bold one}\\
+\underline{I am an underlined font}\\
+\emph{I use emph for emphasis, EMPHASIS!}\\
+
+\begin{section}{Sections}
+  Sections are useful ways to break-up your paper
+
+  \begin{subsection}{Sub-Sections}
+    Subsections specify even more detail
+
+    \begin{subsubsection}{Sub-Sub-Sections}
+      Subsubsections are cool too!
+    \end{subsubsection}
+
+  \end{subsection}
+
+\end{section}
+
+\begin{section}{Making lists}
+
+  \begin{subsection}{Enumerations}
+    \begin{enumerate}
+      \item{I am number 1!}
+      \item{1st is the worst, 2nd is the best}
+      \item{Blah}
+      \item{Blah blah}
+    \end{enumerate}
+  \end{subsection}
+
+  \begin{subsection}{Itemizations}
+    \begin{itemize}
+      \item{I am number 1!}
+      \item{No one care, there is no order in Itemizations}
+      \item{Blah}
+      \item{Blah blah}
+    \end{itemize}
+  \end{subsection}
+
+  \begin{subsection}{Tables}
+    \begin{tabular}{ l c r }
+      1 & 2 & 3 \\
+      4 & 5 & 6 \\
+      7 & 8 & 9 \\
+    \end{tabular}
+  \end{subsection}
+
+  \begin{subsection}{Images}
+    % you can specify different parameters inside the square braces of a TeX
+    % function, in this case, I am telling includegraphics to include the
+    % panda_icon.png image and set its width in the document to 40px
+    \includegraphics[width=40px]{./panda_icon.png}
+  \end{subsection}
+
+  \begin{subsection}{Equations}
+    One of the biggest advantages that {\LaTeX} has over word processors is how
+    easy it is to make equations
+    % inline-equations can be written between dollar signs
+    $ C = 2 \pi r$
+
+    % or you can use begin...end tags
+    \begin{equation}
+      E = m c^2
+    \end{equation}
+
+    % super scripting
+    $ c^2 = a^2 + b^2$ \\
+    $ c = \sqrt{a^2 + b^2}$ \\
+    $ c = \sec(\frac{a}{b})$ \\
+
+    % sub scripting
+    $m_1 v_1 + m_2 v_2 = (m_1 + m_2) v_f$ \\
+
+    % this still is not scratching the surface
+%    $$ f^{'}(x) = \lim_{h \to 0} \frac{ f( x + h ) - f( x ) }{h}$$
+  \end{subsection}
+
+\end{section}
+
+% the closing to the document tag
+\end{document}
